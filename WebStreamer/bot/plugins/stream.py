@@ -32,7 +32,7 @@ async def media_receive_handler(_, m: Message):
     short_link = f"{Var.URL}{get_hash(log_msg)}{log_msg.message_id}"
     logging.info(f"Generated link: {stream_link} for {m.from_user.first_name}")
     await m.reply_text(
-        text="<code>{}</code>\n(<a href='{}'>shortened</a>)".format(
+        text="<i>Your Remote Upload Link Generated.</i>\n\nLink 🔗 :<code>{}</code>\n\n<b>🔥Copy This Link & Paste In Your Streaam.net Dashboard In Remote Upload to Upload This Video.</b>\n\n💥Contact For Any Help @SID12O".format(
             stream_link, short_link
         ),
         quote=True,
