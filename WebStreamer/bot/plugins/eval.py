@@ -9,7 +9,7 @@ import sys
 import time
 import traceback
 
-from WebStreamer.Vars import Var
+from WebStreamer.vars import Var
 from config import Config
 from WebStreamer.__main__ import * # yea 
 from logging.handlers import RotatingFileHandler
