@@ -8,7 +8,7 @@ from urllib.parse import quote_plus
 from WebStreamer.bot import StreamBot
 from WebStreamer.utils import get_hash, get_name
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-
+from pyrogram.errors import UserNotParticipant
 
 
 
