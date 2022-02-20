@@ -8,12 +8,6 @@ from WebStreamer.vars import Var
 from pyrogram.errors import UserNotParticipant
 
 
-@StreamBot.on_message(filters.private & ~filters.user(Var.AUTH_USER))
-async def unauth(_, m: Message):
-        await m.reply_text(
-        text='You are not Authorised Users, Msg Me to Be Auth User'
-    )
-
 @StreamBot.on_message(filters.command(["start", "help"]))
 async def start(c, m: Message):
     if Var.UPDATES_CHANNEL != "None":
@@ -30,9 +24,9 @@ async def start(c, m: Message):
         except UserNotParticipant:
             await c.send_message(
                 chat_id=m.chat.id,
-                text="""<i></i>""",
+                text="""<i>This Is a Private Bot For our Streaam.net Users, You have to Join Our Telegram Channel To Verify You</i>""",
                 reply_markup=InlineKeyboardMarkup(
-                    [[ InlineKeyboardButton("Jᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Var.UPDATES_CHANNEL}") ]]
+                    [[ InlineKeyboardButton("JOIN", url=f"https://t.me/{Var.UPDATES_CHANNEL}") ]]
                 ),
                 parse_mode="HTML"
             )
@@ -40,7 +34,7 @@ async def start(c, m: Message):
         except Exception:
             await c.send_message(
                 chat_id=m.chat.id,
-                text="**Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍʏ ʙᴏss** @Avishkarpatil",
+                text="**Something Went Wrong Contact Dev** @LegendAkshay",
                 parse_mode="markdown",
                 disable_web_page_preview=True)
             return
