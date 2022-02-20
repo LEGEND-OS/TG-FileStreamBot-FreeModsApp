@@ -14,7 +14,7 @@ async def unauth(_, m: Message):
         text='You are not Authorised Users, Msg Me to Be Auth User'
     )
 
-@StreamBot.on_message(filters.private & ~filters.user(Var.AUTH_USER))
+@StreamBot.on_message(filters.command(["start", "help"]))
 async def start(c, m: Message):
     if Var.UPDATES_CHANNEL != "None":
         try:
