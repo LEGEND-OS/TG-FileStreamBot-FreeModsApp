@@ -8,7 +8,7 @@ from WebStreamer.vars import Var
 from pyrogram.errors import UserNotParticipant
 
 
-@StreamBot.on_message(filters.command(["start", "help"]))
+@StreamBot.on_message(filters.command(["start", "help"]) & filters.user(Var.AUTH_USER))
 async def start(c, m: Message):
     if Var.UPDATES_CHANNEL != "None":
         try:
@@ -16,7 +16,7 @@ async def start(c, m: Message):
             if user.status == "kicked":
                 await c.send_message(
                     chat_id=m.chat.id,
-                    text="__Sᴏʀʀʏ Sɪʀ, Yᴏᴜ ᴀʀᴇ Bᴀɴɴᴇᴅ ᴛᴏ ᴜsᴇ ᴍᴇ.__\n\n  **Cᴏɴᴛᴀᴄᴛ Dᴇᴠᴇʟᴏᴘᴇʀ @Avishkarpatil Tʜᴇʏ Wɪʟʟ Hᴇʟᴘ Yᴏᴜ**",
+                    text="__Something Went Wrong ❌__\n\n  **Contact Dev @LegendAkshay To Report This Error**",
                     parse_mode="markdown",
                     disable_web_page_preview=True
                 )
@@ -24,7 +24,7 @@ async def start(c, m: Message):
         except UserNotParticipant:
             await c.send_message(
                 chat_id=m.chat.id,
-                text="""<i>Jᴏɪɴ ᴍʏ ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜꜱᴇ ᴍᴇ 🔐</i>""",
+                text="""<i></i>""",
                 reply_markup=InlineKeyboardMarkup(
                     [[ InlineKeyboardButton("Jᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Var.UPDATES_CHANNEL}") ]]
                 ),
