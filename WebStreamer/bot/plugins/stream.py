@@ -27,9 +27,6 @@ from pyrogram.errors import UserNotParticipant
     group=4,
 )
 async def media_receive_handler(c, m: Message):
-   if m.from_user.id not in Var.AUTH_USERS:
-    await m.reply_text("**This Bot is Only For Authorised Users of Streaam.net**\n\n__Contact @LegendAkshay Or @SID12O__")
-   if m.from_user.id in Var.AUTH_USERS:
     log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
     stream_link = f"{Var.URL}{log_msg.message_id}/{quote_plus(get_name(m))}?hash={get_hash(log_msg)}"
     short_link = f"{Var.URL}{get_hash(log_msg)}{log_msg.message_id}"
