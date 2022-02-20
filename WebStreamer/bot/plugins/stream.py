@@ -27,38 +27,9 @@ from pyrogram.errors import UserNotParticipant
     group=4,
 )
 async def media_receive_handler(c, m: Message):
-    if Var.UPDATES_CHANNEL is not None:
-        try:
-            user = await c.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
-            if user.status == "kicked":
-                await c.send_message(
-                    chat_id=m.chat.id,
-                    text="__You are Banned ❌.__\n\n**Contact @LegendAkshay or @SID12O**",
-                    parse_mode="markdown",
-                    disable_web_page_preview=True
-                )
-                return
-        except UserNotParticipant:
-            await c.send_message(
-                chat_id=m.chat.id,
-                text="**This Is a Private Bot For our Streaam.net Users, You have to Join Our Telegram Channel To Verify You**",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton("Join", url=f"https://t.me/{Var.UPDATES_CHANNEL}")
-                        ]
-                    ]
-                ),
-                parse_mode="markdown"
-            )
-            return
-        except Exception:
-            await c.send_message(
-                chat_id=m.chat.id,
-                text="Something went Wrong. Contact my [Developer](https://t.me/LegendAkshay).",
-                parse_mode="markdown",
-                disable_web_page_preview=True)
-            return
+   if m.from_user.id not in Var.AUTH_USERS:
+    await m.reply_text("**This Bot is Only For Authorised Users of Streaam.net**\n\n__Contact @LegendAkshay Or @SID12O__")
+   if m.from_user.id in Var.AUTH_USERS:
     log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
     stream_link = f"{Var.URL}{log_msg.message_id}/{quote_plus(get_name(m))}?hash={get_hash(log_msg)}"
     short_link = f"{Var.URL}{get_hash(log_msg)}{log_msg.message_id}"
