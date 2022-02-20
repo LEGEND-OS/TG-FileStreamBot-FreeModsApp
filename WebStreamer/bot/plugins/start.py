@@ -7,11 +7,10 @@ from WebStreamer.bot import StreamBot
 from WebStreamer.vars import Var
 from pyrogram.errors import UserNotParticipant
 
-@StreamBot.on_message(filters.private & ~filters.user(Var.AUTH_USER))
+@StreamBot.on_message(filters.private)
 async def unauth(_, m: Message):
-        await m.reply_text(
-        text='**This Bot Is Only For Authorized Users**\n\n__Message @SID12O To Be Authorized__'
-    )
+ if m.from_user.id not in Var.AUTH_USERS:
+  await m.reply_text("You are not Authorized User, Msg Me To Be Auth Users")
 
 @StreamBot.on_message(filters.command(["start", "help"]))
 async def start(c, m: Message):
