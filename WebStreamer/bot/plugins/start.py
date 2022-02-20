@@ -16,7 +16,7 @@ async def start(c, m: Message):
             if user.status == "kicked":
                 await c.send_message(
                     chat_id=m.chat.id,
-                    text="__Something Went Wrong ❌__\n\n  **Contact Dev @LegendAkshay To Report This Error**",
+                    text="__You are Banned in Our Updates Channel ❌__\n\n  **Contact @LegendAkshay**",
                     parse_mode="markdown",
                     disable_web_page_preview=True
                 )
