@@ -13,7 +13,7 @@ async def start(c, m: Message):
     if Var.UPDATES_CHANNEL != "None":
         try:
             user = await c.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
-            if user.status == "kicked":
+            if user.status in ["kicked", "banned"]:
                 await c.send_message(
                     chat_id=m.chat.id,
                     text="__You are Banned in Our Updates Channel ❌__\n\n  **Contact @LegendAkshay**",
