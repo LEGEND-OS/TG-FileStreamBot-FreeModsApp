@@ -9,7 +9,7 @@ from pyrogram.errors import UserNotParticipant
 
 
 @StreamBot.on_message(filters.command(["start", "help"]))
-async def start(b, m):
+async def start(_, m: Message):
   if Var.UPDATES_CHANNEL != "None":
         try:
             user = await c.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
