@@ -2,7 +2,7 @@
 # Coding : Jyothis Jayanth [@EverythingSuckz]
 
 from pyrogram import filters
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from WebStreamer.bot import StreamBot
 from pyrogram.errors import UserNotParticipant
 
