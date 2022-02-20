@@ -27,7 +27,7 @@ from pyrogram.errors import UserNotParticipant
     group=4,
 )
 async def media_receive_handler(c, m: Message):
-     if Var.UPDATES_CHANNEL != "None":
+     if Var.UPDATES_CHANNEL is not None:
         try:
             user = await c.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
             if user.status in ["kicked", "banned"]:
@@ -55,6 +55,7 @@ async def media_receive_handler(c, m: Message):
                 parse_mode="markdown",
                 disable_web_page_preview=True)
             return
+
     log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
     stream_link = f"{Var.URL}{log_msg.message_id}/{quote_plus(get_name(m))}?hash={get_hash(log_msg)}"
     short_link = f"{Var.URL}{get_hash(log_msg)}{log_msg.message_id}"
