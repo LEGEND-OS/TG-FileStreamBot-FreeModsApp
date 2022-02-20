@@ -27,13 +27,13 @@ from pyrogram.errors import UserNotParticipant
     group=4,
 )
 async def media_receive_handler(c, m: Message):
-      if Var.UPDATES_CHANNEL is not None:
+    if Var.UPDATES_CHANNEL is not None:
         try:
             user = await c.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
-            if user.status in ["kicked", "banned"]:
+            if user.status == "kicked":
                 await c.send_message(
                     chat_id=m.chat.id,
-                    text="__You are Banned in Our Updates Channel ❌__\n\n  **Contact @LegendAkshay**",
+                    text="__You are Banned ❌.__\n\n**Contact @LegendAkshay or @SID12O**",
                     parse_mode="markdown",
                     disable_web_page_preview=True
                 )
@@ -41,24 +41,27 @@ async def media_receive_handler(c, m: Message):
         except UserNotParticipant:
             await c.send_message(
                 chat_id=m.chat.id,
-                text="""<i>This Is a Private Bot For our Streaam.net Users, You have to Join Our Telegram Channel To Verify You</i>""",
+                text="**This Is a Private Bot For our Streaam.net Users, You have to Join Our Telegram Channel To Verify You**",
                 reply_markup=InlineKeyboardMarkup(
-                    [[ InlineKeyboardButton("JOIN", url=f"https://t.me/{Var.UPDATES_CHANNEL}") ]]
+                    [
+                        [
+                            InlineKeyboardButton("Join", url=f"https://t.me/{Var.UPDATES_CHANNEL}")
+                        ]
+                    ]
                 ),
-                parse_mode="HTML"
+                parse_mode="markdown"
             )
             return
         except Exception:
             await c.send_message(
                 chat_id=m.chat.id,
-                text="**Something Went Wrong Contact Dev** @LegendAkshay",
+                text="Something went Wrong. Contact my [Developer](https://t.me/LegendAkshay).",
                 parse_mode="markdown",
                 disable_web_page_preview=True)
             return
     log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
     stream_link = f"{Var.URL}{log_msg.message_id}/{quote_plus(get_name(m))}?hash={get_hash(log_msg)}"
     short_link = f"{Var.URL}{get_hash(log_msg)}{log_msg.message_id}"
-    logging.info(f"Generated link: {stream_link} for {m.from_user.first_name}")
     await log_msg.reply_text(text=f"Requested by [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**User ID:** `{m.from_user.id}`\n**Download Link:** {stream_link}\n**Rapid Link:** {short_link}", disable_web_page_preview=True, parse_mode="Markdown", quote=True)
     await m.reply_text(
         text="<i>Your Remote Upload Link Generated.</i>\n\nLink 🔗 :<code>{}</code>\n\n<b>🔥Copy This Link & Paste In Your Streaam.net Dashboard In Remote Upload to Upload This Video.</b>\n\n💥Contact For Any Help @SID12O".format(
