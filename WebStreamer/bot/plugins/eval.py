@@ -22,7 +22,7 @@ FREE_USER_MAX_FILE_SIZE = 2097152000
 
 @StreamBot.on_message(filters.command(["eval", "exec"]))
 async def eval_handler(bot, message):
-  if message.from_user.id in Var.AUTH_USER:
+  if message.from_user.id in Var.ADMIN:
     status_message = await message.reply_text("Processing ...")
     cmd = message.text.split(" ", maxsplit=1)[1]
     reply_to_id = message.message_id
