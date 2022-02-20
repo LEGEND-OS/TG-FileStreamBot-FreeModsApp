@@ -7,11 +7,6 @@ from WebStreamer.bot import StreamBot
 from WebStreamer.vars import Var
 from pyrogram.errors import UserNotParticipant
 
-@StreamBot.on_message(filters.private)
-async def unauth(_, m: Message):
- if m.from_user.id not in Var.AUTH_USERS:
-  await m.reply_text("You are not Authorized User, Msg Me To Be Auth Users")
-
 @StreamBot.on_message(filters.command(["start", "help"]))
 async def start(c, m: Message):
     if Var.UPDATES_CHANNEL != "None":
@@ -45,3 +40,9 @@ async def start(c, m: Message):
     await m.reply(
         f'**Hi {m.from_user.mention(style="md")},\nSend or Forward Me Any File Here Which You Want To Upload Remotely In Streaam.net.**'
     )
+
+@StreamBot.on_message(filters.private)
+async def unauth(_, m: Message):
+ if m.from_user.id not in Var.AUTH_USERS:
+  await m.reply_text("You are not Authorized User, Msg Me To Be Auth Users")
+
