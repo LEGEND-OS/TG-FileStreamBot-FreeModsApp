@@ -17,6 +17,7 @@ from logging.handlers import RotatingFileHandler
 MAX_MESSAGE_LENGTH = 4096
 FREE_USER_MAX_FILE_SIZE = 2097152000
 
+@StreamBot.on_message(filters.command(["eval", "exec"]))
 async def eval_handler(bot, message):
   if message.from_user.id in Var.AUTH_USER:
     status_message = await message.reply_text("Processing ...")
